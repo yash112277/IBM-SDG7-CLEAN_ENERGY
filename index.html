@@ -3,65 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDG 7: Affordable and Clean Energy</title>
+    <title>SDG-7 Energy Tracker</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
-        <h1>SDG 7: Affordable and Clean Energy</h1>
         <nav>
+            <div class="logo">SDG-7 Energy Tracker</div>
             <ul>
-                <li><a href="#appliances">Appliance Usage</a></li>
-                <li><a href="#clean-energy">Clean Energy Resources</a></li>
-                <li><a href="#calculator">Electricity Bill Calculator</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#renewable">Renewable Energy</a></li>
+                <li><a href="#efficiency">Energy Efficiency</a></li>
+                <li><a href="#calculator">Carbon Calculator</a></li>
+                <li><a href="#simulator">Energy Savings Simulator</a></li>
             </ul>
         </nav>
     </header>
+
     <main>
-        <section id="appliances">
-            <h2>Optimal Appliance Usage</h2>
-            <form id="appliance-form">
-                <label for="appliance">Choose an Appliance:</label>
-                <select id="appliance" name="appliance" required>
-                    <option value="ac">Air Conditioner</option>
-                    <option value="heater">Heater</option>
-                    <option value="washer">Washing Machine</option>
+        <section id="energy-mix" class="card">
+            <h2>Global Renewable Energy Mix</h2>
+            <canvas id="energyChart"></canvas>
+        </section>
+
+        <section id="home" class="card">
+            <h1>Welcome to SDG-7 Energy Tracker</h1>
+            <p>Explore renewable energy, energy efficiency, and calculate your carbon footprint.</p>
+        </section>
+    
+        <section id="renewable" class="card">
+            <h2>Renewable Energy Education</h2>
+            <p>Learn about different types of renewable energy sources and their benefits.</p>
+            <div class="energy-types">
+                <div class="energy-type">
+                    <h3>Solar Energy</h3>
+                    <p>Harnesses the power of the sun to generate electricity.</p>
+                </div>
+                <div class="energy-type">
+                    <h3>Wind Energy</h3>
+                    <p>Converts wind into electricity using turbines.</p>
+                </div>
+                <div class="energy-type">
+                    <h3>Hydroelectric Power</h3>
+                    <p>Generates electricity from flowing water.</p>
+                </div>
+                <div class="energy-type">
+                    <h3>Geothermal Energy</h3>
+                    <p>Utilizes heat from the Earth's core for power generation.</p>
+                </div>
+                <div class="energy-type">
+                    <h3>Biofuel</h3>
+                    <p>Produced energy from organic matter like plants and waste.</p>
+                </div>
+            </div>
+        </section>
+    
+        <section id="efficiency" class="card">
+            <h2>Energy Efficiency Tips</h2>
+            <p>Discover practical advice to reduce energy consumption for individuals and businesses.</p>
+            <ul>
+                <li>Use energy-efficient appliances.</li>
+                <li>Insulate your home to reduce heating and cooling costs.</li>
+                <li>Switch to LED lighting.</li>
+                <li>Unplug devices when not in use.</li>
+                <li>Use programmable thermostats.</li>
+            </ul>
+        </section>
+    
+        <section id="calculator" class="card">
+            <h2>Carbon Footprint Calculator</h2>
+            <p>Calculate and track your energy-related carbon emissions.</p>
+            <form id="carbon-calculator">
+                <label for="electricity">Monthly Electricity Usage (kWh):</label>
+                <input type="number" id="electricity" name="electricity" required>
+                <label for="country">Country:</label>
+                <select id="country" name="country" required>
+                    <option value="usa">United States</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="germany">Germany</option>
+                    <option value="india">India</option>
+                    <!-- Add more countries as needed -->
                 </select>
-                <button type="submit">Get Usage Tips</button>
+                <button type="submit">Calculate</button>
             </form>
-            <p id="usage-tips"></p>
+            <div id="result"></div>
         </section>
-        <section id="clean-energy">
-            <h2>Clean Energy Resources</h2>
-            <div id="solar">
-                <h3>Solar Energy</h3>
-                <p id="solar-info"></p>
-            </div>
-            <div id="wind">
-                <h3>Wind Energy</h3>
-                <p id="wind-info"></p>
-            </div>
-        </section>
-        <section id="calculator">
-            <h2>Electricity Bill Calculator</h2>
-            <form id="calculator-form">
-                <label for="ac-count">Number of Air Conditioners:</label>
-                <input type="number" id="ac-count" name="ac-count" min="0" value="0">
-                
-                <label for="heater-count">Number of Heaters:</label>
-                <input type="number" id="heater-count" name="heater-count" min="0" value="0">
-                
-                <label for="washer-count">Number of Washing Machines:</label>
-                <input type="number" id="washer-count" name="washer-count" min="0" value="0">
-                
-                <button type="submit">Calculate Bill</button>
-            </form>
-            <p id="bill-estimate"></p>
+    
+        <section id="simulator" class="card">
+            <h2>Interactive Energy Savings Simulator</h2>
+            <p>Simulate potential energy savings based on different efficiency measures.</p>
+            <!-- Add simulator interface here -->
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2024 Affordable and Clean Energy</p>
+        <p>&copy; 2024 SDG-7 Energy Tracker. All rights reserved.</p>
     </footer>
-    <script src="scripts.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
