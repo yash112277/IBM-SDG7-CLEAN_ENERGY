@@ -1,76 +1,11 @@
-// Enhanced AI Chatbot
-const chatbotToggle = document.createElement('div');
-chatbotToggle.innerHTML = '💬';
-chatbotToggle.style.position = 'fixed';
-chatbotToggle.style.bottom = '20px';
-chatbotToggle.style.right = '20px';
-chatbotToggle.style.fontSize = '2rem';
-chatbotToggle.style.cursor = 'pointer';
-chatbotToggle.style.backgroundColor = 'var(--primary-color)';
-chatbotToggle.style.color = 'white';
-chatbotToggle.style.borderRadius = '50%';
-chatbotToggle.style.width = '60px';
-chatbotToggle.style.height = '60px';
-chatbotToggle.style.display = 'flex';
-chatbotToggle.style.justifyContent = 'center';
-chatbotToggle.style.alignItems = 'center';
-document.body.appendChild(chatbotToggle);
-
-const chatbot = document.createElement('div');
-chatbot.style.position = 'fixed';
-chatbot.style.bottom = '100px';
-chatbot.style.right = '20px';
-chatbot.style.width = '300px';
-chatbot.style.height = '400px';
-chatbot.style.backgroundColor = 'white';
-chatbot.style.borderRadius = '10px';
-chatbot.style.boxShadow = '0 0 10px rgba(0,0,0,0.1)';
-chatbot.style.display = 'none';
-chatbot.innerHTML = `
-    <div style="background-color: var(--primary-color); color: white; padding: 10px; border-radius: 10px 10px 0 0;">SDG-7 Energy Assistant</div>
-    <div id="chatMessages" style="height: 320px; overflow-y: auto; padding: 10px;"></div>
-    <input type="text" id="userInput" placeholder="Ask about SDG-7..." style="width: 100%; padding: 10px; border: none; border-top: 1px solid #eee;">
-`;
-document.body.appendChild(chatbot);
-
-chatbotToggle.addEventListener('click', () => {
-    chatbot.style.display = chatbot.style.display === 'none' ? 'block' : 'none';
-});
-
-const userInput = document.getElementById('userInput');
-const chatMessages = document.getElementById('chatMessages');
-
-userInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        const userMessage = userInput.value;
-        chatMessages.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
-        userInput.value = '';
-        
-        // Simple response logic
-        let botResponse = "I'm sorry, I don't have information about that. Can you ask something related to SDG-7 or renewable energy?";
-        if (userMessage.toLowerCase().includes('renewable')) {
-            botResponse = "Renewable energy sources include solar, wind, hydro, geothermal, and biomass. They are crucial for achieving SDG-7 goals.";
-        } else if (userMessage.toLowerCase().includes('efficiency')) {
-            botResponse = "Energy efficiency is about using less energy to perform the same task. It's a key component of SDG-7 for sustainable energy.";
-        }
-        
-        setTimeout(() => {
-            chatMessages.innerHTML += `<p><strong>Bot:</strong> ${botResponse}</p>`;
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 500);
-    }
-});
-
 // Carbon Footprint Calculator
 const carbonCalculator = document.getElementById('carbon-calculator');
 const result = document.getElementById('result');
-
 const emissionFactors = {
     usa: 0.42, // kg CO2 per kWh
     uk: 0.23,
     germany: 0.34,
     india: 0.82,
-    // Add more countries and their emission factors
 };
 
 carbonCalculator.addEventListener('submit', function(e) {
@@ -79,7 +14,6 @@ carbonCalculator.addEventListener('submit', function(e) {
     const country = document.getElementById('country').value;
     const annualUsage = electricity * 12;
     const carbonFootprint = annualUsage * emissionFactors[country];
-
     result.innerHTML = `
         <h3>Your Annual Carbon Footprint</h3>
         <p>${carbonFootprint.toFixed(2)} kg CO2</p>
@@ -103,20 +37,20 @@ document.querySelectorAll('nav a').forEach(anchor => {
 
 // Energy Mix Chart
 const ctx = document.getElementById('energyChart').getContext('2d');
-new Chart(ctx, {
+const chart = new Chart(ctx, {
     type: 'pie',
     data: {
         labels: ['Solar', 'Wind', 'Hydro', 'Geothermal', 'Biomass', 'Biofuel', 'Other Renewables'],
         datasets: [{
             data: [10, 24, 37, 4, 15, 4, 6],
             backgroundColor: [
-                '#ffd166',
-                '#06d6a0',
-                '#118ab2',
-                '#ef476f',
-                '#073b4c',
-                '#3a86ff',
-                '#8338ec'
+                '#FFA726',
+                '#66BB6A',
+                '#29B6F6',
+                '#EF5350',
+                '#8D6E63',
+                '#26A69A',
+                '#AB47BC'
             ]
         }]
     },
@@ -125,7 +59,15 @@ new Chart(ctx, {
         plugins: {
             title: {
                 display: true,
-                text: 'Global Renewable Energy Mix 2023'
+                text: 'Global Renewable Energy Mix 2023',
+                color: '#1a73e8',
+                font: {
+                    size: 16,
+                    weight: 'bold'
+                }
+            },
+            legend: {
+                position: 'bottom'
             }
         }
     }
@@ -134,18 +76,77 @@ new Chart(ctx, {
 // Energy Savings Simulator
 const savingsSimulator = document.getElementById('savings-simulator');
 const savingsResult = document.getElementById('savings-result');
+const savingsPercentageInput = document.getElementById('savings-percentage');
+const savingsPercentageOutput = document.querySelector('output[for="savings-percentage"]');
+
+savingsPercentageInput.addEventListener('input', function() {
+    savingsPercentageOutput.value = this.value + '%';
+});
 
 savingsSimulator.addEventListener('submit', function(e) {
     e.preventDefault();
     const currentUsage = parseFloat(document.getElementById('current-usage').value);
-    const savingsPercentage = parseFloat(document.getElementById('savings-percentage').value);
-
-    const potentialSavings = (currentUsage * savingsPercentage) / 100;
-    const newUsage = currentUsage - potentialSavings;
+    const savingsPercentage = parseFloat(savingsPercentageInput.value);
+    const country = document.getElementById('country').value;
+    
+    const annualUsage = currentUsage * 12;
+    const savedEnergy = annualUsage * (savingsPercentage / 100);
+    const carbonSaved = savedEnergy * emissionFactors[country];
+    const moneySaved = savedEnergy * 0.15; // Assuming $0.15 per kWh
 
     savingsResult.innerHTML = `
-        <h3>Energy Savings Simulation</h3>
-        <p>With a ${savingsPercentage}% reduction in energy usage, you can save ${potentialSavings.toFixed(2)} kWh per month.</p>
-        <p>Your new monthly energy usage would be ${newUsage.toFixed(2)} kWh.</p>
+        <h3>Your Potential Savings</h3>
+        <p>Energy Saved: ${savedEnergy.toFixed(2)} kWh per year</p>
+        <p>Carbon Emissions Reduced: ${carbonSaved.toFixed(2)} kg CO2 per year</p>
+        <p>Money Saved: $${moneySaved.toFixed(2)} per year</p>
+        <p>Impact:</p>
+        <ul>
+            <li>${(carbonSaved / 200).toFixed(2)} trees saved</li>
+            <li>${(carbonSaved / 4000).toFixed(2)} cars taken off the road for a year</li>
+        </ul>
+        <div class="savings-chart">
+            <div class="bar" style="height: 100%;">
+                <span>Current: ${annualUsage.toFixed(0)} kWh</span>
+            </div>
+            <div class="bar new" style="height: ${100 - savingsPercentage}%;">
+                <span>New: ${(annualUsage - savedEnergy).toFixed(0)} kWh</span>
+            </div>
+        </div>
     `;
+});
+
+// Tooltip functionality
+const tooltipContainer = document.getElementById('tooltip-container');
+const tooltipTrigger = document.getElementById('tooltip-trigger');
+const tooltipContent = document.getElementById('tooltip-content');
+
+tooltipTrigger.addEventListener('click', function() {
+    tooltipContainer.classList.toggle('open');
+});
+
+document.addEventListener('click', function(event) {
+    if (!tooltipContainer.contains(event.target) && tooltipContainer.classList.contains('open')) {
+        tooltipContainer.classList.remove('open');
+    }
+});
+
+// Dynamic year in footer
+const currentYear = new Date().getFullYear();
+document.querySelector('footer p').textContent = `© ${currentYear} SDG-7 Energy Tracker. All rights reserved.`;
+
+// Add animation to energy types
+const energyTypes = document.querySelectorAll('.energy-type');
+energyTypes.forEach(type => {
+    type.addEventListener('mouseover', function() {
+        this.style.transform = 'scale(1.05)';
+        this.style.transition = 'transform 0.3s ease';
+    });
+    type.addEventListener('mouseout', function() {
+        this.style.transform = 'scale(1)';
+    });
+});
+
+// Add responsiveness to the chart
+window.addEventListener('resize', function() {
+    chart.resize();
 });

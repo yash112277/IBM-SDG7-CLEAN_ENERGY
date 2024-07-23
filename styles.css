@@ -1,12 +1,13 @@
 :root {
-    --primary-color: #2c7da0;
-    --secondary-color: #61a5c2;
-    --background-color: #e9ecef;
-    --text-color: #212529;
+    --primary-color: #1a73e8;
+    --secondary-color: #4caf50;
+    --accent-color: #fdd835;
+    --background-color: #f5f5f5;
+    --text-color: #333333;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
@@ -17,12 +18,15 @@ body {
 header {
     background-color: var(--primary-color);
     padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .logo {
@@ -43,34 +47,49 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--accent-color);
 }
 
 main {
-    padding: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
+    background: white;
     border-radius: 10px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-footer {
-    background-color: var(--primary-color);
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+h1, h2, h3 {
+    color: var(--primary-color);
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #fbc02d;
 }
 
 .energy-types {
@@ -81,28 +100,134 @@ footer {
 }
 
 .energy-type {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #f9f9f9;
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.energy-type h3 {
-    color: var(--primary-color);
-    margin-top: 0;
+.energy-type i {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
 }
 
-#chatbotToggle, #chatbot {
+form {
+    display: grid;
+    gap: 1rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+#tooltip-container {
+    position: fixed;
+    right: -250px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: right 0.3s ease;
     z-index: 1000;
 }
 
-body {
-    padding-bottom: 60px; /* Adjust based on your footer height*/
+#tooltip-trigger {
+    position: absolute;
+    left: -60px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
 }
-    
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 999;
+
+#tooltip-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px 0 0 10px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    width: 250px;
+}
+
+#tooltip-content h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+#tooltip-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#tooltip-content li {
+    margin-bottom: 10px;
+}
+
+#tooltip-content i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+}
+
+#tooltip-container:hover {
+    right: 0;
+}
+
+.savings-chart {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 200px;
+    margin-top: 20px;
+}
+
+.savings-chart .bar {
+    width: 80px;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    transition: height 0.5s ease;
+}
+
+.savings-chart .bar.new {
+    background-color: var(--secondary-color);
+}
+
+.savings-chart .bar span {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    padding: 5px;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    nav ul {
+        margin-top: 1rem;
+    }
+
+    .energy-types {
+        grid-template-columns: 1fr;
+    }
 }

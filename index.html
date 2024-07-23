@@ -6,73 +6,67 @@
     <title>SDG-7 Energy Tracker</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">SDG-7 Energy Tracker</div>
+            <div class="logo"><i class="fas fa-leaf"></i> SDG-7 Energy Tracker</div>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#renewable">Renewable Energy</a></li>
-                <li><a href="#efficiency">Energy Efficiency</a></li>
-                <li><a href="#calculator">Carbon Calculator</a></li>
-                <li><a href="#simulator">Energy Savings Simulator</a></li>
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#renewable"><i class="fas fa-solar-panel"></i> Renewable Energy</a></li>
+                <li><a href="#calculator"><i class="fas fa-calculator"></i> Carbon Calculator</a></li>
+                <li><a href="#simulator"><i class="fas fa-chart-line"></i> Energy Savings Simulator</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section id="energy-mix" class="card">
-            <h2>Global Renewable Energy Mix</h2>
+            <h2><i class="fas fa-chart-pie"></i> Global Renewable Energy Mix</h2>
             <canvas id="energyChart"></canvas>
         </section>
 
         <section id="home" class="card">
             <h1>Welcome to SDG-7 Energy Tracker</h1>
             <p>Explore renewable energy, energy efficiency, and calculate your carbon footprint.</p>
+            <a href="#renewable" class="cta-button">Get Started</a>
         </section>
     
         <section id="renewable" class="card">
-            <h2>Renewable Energy Education</h2>
+            <h2><i class="fas fa-sun"></i> Renewable Energy Education</h2>
             <p>Learn about different types of renewable energy sources and their benefits.</p>
             <div class="energy-types">
                 <div class="energy-type">
+                    <i class="fas fa-solar-panel"></i>
                     <h3>Solar Energy</h3>
                     <p>Harnesses the power of the sun to generate electricity.</p>
                 </div>
                 <div class="energy-type">
+                    <i class="fas fa-wind"></i>
                     <h3>Wind Energy</h3>
                     <p>Converts wind into electricity using turbines.</p>
                 </div>
                 <div class="energy-type">
+                    <i class="fas fa-water"></i>
                     <h3>Hydroelectric Power</h3>
                     <p>Generates electricity from flowing water.</p>
                 </div>
                 <div class="energy-type">
+                    <i class="fas fa-mountain"></i>
                     <h3>Geothermal Energy</h3>
                     <p>Utilizes heat from the Earth's core for power generation.</p>
                 </div>
                 <div class="energy-type">
+                    <i class="fas fa-seedling"></i>
                     <h3>Biofuel</h3>
                     <p>Produced energy from organic matter like plants and waste.</p>
                 </div>
             </div>
         </section>
     
-        <section id="efficiency" class="card">
-            <h2>Energy Efficiency Tips</h2>
-            <p>Discover practical advice to reduce energy consumption for individuals and businesses.</p>
-            <ul>
-                <li>Use energy-efficient appliances.</li>
-                <li>Insulate your home to reduce heating and cooling costs.</li>
-                <li>Switch to LED lighting.</li>
-                <li>Unplug devices when not in use.</li>
-                <li>Use programmable thermostats.</li>
-            </ul>
-        </section>
-    
         <section id="calculator" class="card">
-            <h2>Carbon Footprint Calculator</h2>
+            <h2><i class="fas fa-calculator"></i> Carbon Footprint Calculator</h2>
             <p>Calculate and track your energy-related carbon emissions.</p>
             <form id="carbon-calculator">
                 <label for="electricity">Monthly Electricity Usage (kWh):</label>
@@ -83,19 +77,40 @@
                     <option value="uk">United Kingdom</option>
                     <option value="germany">Germany</option>
                     <option value="india">India</option>
-                    <!-- Add more countries as needed -->
                 </select>
-                <button type="submit">Calculate</button>
+                <button type="submit" class="cta-button">Calculate</button>
             </form>
             <div id="result"></div>
         </section>
     
         <section id="simulator" class="card">
-            <h2>Interactive Energy Savings Simulator</h2>
+            <h2><i class="fas fa-chart-line"></i> Interactive Energy Savings Simulator</h2>
             <p>Simulate potential energy savings based on different efficiency measures.</p>
-            <!-- Add simulator interface here -->
+            <form id="savings-simulator">
+                <label for="current-usage">Current Monthly Energy Usage (kWh):</label>
+                <input type="number" id="current-usage" name="current-usage" required>
+                <label for="savings-percentage">Expected Savings Percentage:</label>
+                <input type="range" id="savings-percentage" name="savings-percentage" min="0" max="100" value="20">
+                <output for="savings-percentage">20%</output>
+                <button type="submit" class="cta-button">Simulate Savings</button>
+            </form>
+            <div id="savings-result"></div>
         </section>
     </main>
+
+    <div id="tooltip-container">
+        <button id="tooltip-trigger">Tips</button>
+        <div id="tooltip-content">
+            <h3>Energy Saving Tips</h3>
+            <ul>
+                <li><i class="fas fa-plug"></i> Use energy-efficient appliances</li>
+                <li><i class="fas fa-home"></i> Insulate your home</li>
+                <li><i class="fas fa-lightbulb"></i> Switch to LED lighting</li>
+                <li><i class="fas fa-power-off"></i> Unplug devices when not in use</li>
+                <li><i class="fas fa-thermometer-half"></i> Use programmable thermostats</li>
+            </ul>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2024 SDG-7 Energy Tracker. All rights reserved.</p>
