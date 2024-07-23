@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDG 7: Affordable and Clean Energy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>SDG 7: Affordable and Clean Energy</h1>
+        <nav>
+            <ul>
+                <li><a href="#appliances">Appliance Usage</a></li>
+                <li><a href="#clean-energy">Clean Energy Resources</a></li>
+                <li><a href="#calculator">Electricity Bill Calculator</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="appliances">
+            <h2>Optimal Appliance Usage</h2>
+            <form id="appliance-form">
+                <label for="appliance">Choose an Appliance:</label>
+                <select id="appliance" name="appliance" required>
+                    <option value="ac">Air Conditioner</option>
+                    <option value="heater">Heater</option>
+                    <option value="washer">Washing Machine</option>
+                </select>
+                <button type="submit">Get Usage Tips</button>
+            </form>
+            <p id="usage-tips"></p>
+        </section>
+        <section id="clean-energy">
+            <h2>Clean Energy Resources</h2>
+            <div id="solar">
+                <h3>Solar Energy</h3>
+                <p id="solar-info"></p>
+            </div>
+            <div id="wind">
+                <h3>Wind Energy</h3>
+                <p id="wind-info"></p>
+            </div>
+        </section>
+        <section id="calculator">
+            <h2>Electricity Bill Calculator</h2>
+            <form id="calculator-form">
+                <label for="ac-count">Number of Air Conditioners:</label>
+                <input type="number" id="ac-count" name="ac-count" min="0" value="0">
+                
+                <label for="heater-count">Number of Heaters:</label>
+                <input type="number" id="heater-count" name="heater-count" min="0" value="0">
+                
+                <label for="washer-count">Number of Washing Machines:</label>
+                <input type="number" id="washer-count" name="washer-count" min="0" value="0">
+                
+                <button type="submit">Calculate Bill</button>
+            </form>
+            <p id="bill-estimate"></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Affordable and Clean Energy</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
