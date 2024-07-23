@@ -105,6 +105,30 @@ h1, h2, h3 {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.more-info {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.more-info::before {
+    content: '\f0d7';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    margin-right: 5px;
+}
+
+.expanded-info {
+    text-align: left;
 }
 
 .energy-type i {
@@ -112,6 +136,13 @@ h1, h2, h3 {
     color: var(--secondary-color);
     margin-bottom: 0.5rem;
 }
+.energy-type button {
+    padding: 25px;
+    background-color: yellowgreen;
+    margin: 2rem;
+    border-radius: 15px;
+}
+
 
 form {
     display: grid;
