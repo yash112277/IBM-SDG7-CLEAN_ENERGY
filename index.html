@@ -3,28 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDG-7 Clean Energyer</title>
+    <title>SDG-7 Energy Tracker</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo"><i class="fas fa-leaf"></i> SDG-7 Energy Tracker</div>
+            <div class="logo">SDG-7 Energy Tracker</div>
             <ul>
-                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#renewable"><i class="fas fa-solar-panel"></i> Renewable Energy</a></li>
-                <li><a href="#calculator"><i class="fas fa-calculator"></i> Carbon Calculator</a></li>
-                <li><a href="#simulator"><i class="fas fa-chart-line"></i> Energy Savings Simulator</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#renewable">Renewable Energy</a></li>
+                <li><a href="#calculator">Carbon Calculator</a></li>
+                <li><a href="#simulator">Energy Savings Simulator</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="content-wrapper">
     <main>
         <section id="home" class="card">
             <h1>Welcome to SDG-7 Energy Tracker</h1>
+            <p class="tagline">For a Better and Cleaner Tomorrow</p>
             <p>Explore renewable energy, energy efficiency, and calculate your carbon footprint.</p>
             <a href="#renewable" class="cta-button">Get Started</a>
         </section>
@@ -33,168 +31,185 @@
             <h2><i class="fas fa-sun"></i> Renewable Energy Education</h2>
             <p>Learn about different types of renewable energy sources and their benefits.</p>
             <div class="energy-types">
-                <div class="energy-type">
-                    <i class="fas fa-solar-panel"></i>
+                <div class="energy-card" data-energy="solar">
+                  <div class="card-front">
                     <h3>Solar Energy</h3>
                     <p>Harnesses the sun's power using photovoltaic cells and solar thermal systems.</p>
-                    <button class="more-info">More Info</button>
-                    <div class="expanded-info" style="display:none;">
-                        <h4>Advantages:</h4>
-                        <ul>
-                            <li>Abundant Resource</li>
-                            <li>Environmental Benefits</li>
-                            <li>Low Operational Costs</li>
-                        </ul>
-                        <h4>Disadvantages:</h4>
-                        <ul>
-                            <li>Intermittent Supply</li>
-                            <li>High Initial Costs</li>
-                            <li>Space Requirements</li>
-                        </ul>
-                        <h4>Applications:</h4>
-                        <ul>
-                            <li>Residential</li>
-                            <li>Commercial</li>
-                            <li>Utility-Scale</li>
-                            <li>Off-Grid</li>
-                        </ul>
-                    </div>
+                    <button class="more-info">Learn More</button>
+                  </div>
+                  <div class="card-back">
+                    <h4>Solar Energy</h4>
+                    <h5>Advantages:</h5>
+                    <ul>
+                      <li>Abundant Resource</li>
+                      <li>Environmental Benefits</li>
+                      <li>Low Operational Costs</li>
+                    </ul>
+                    <h5>Disadvantages:</h5>
+                    <ul>
+                      <li>Intermittent Supply</li>
+                      <li>High Initial Costs</li>
+                      <li>Space Requirements</li>
+                    </ul>
+                    <h5>Applications:</h5>
+                    <ul>
+                      <li>Residential</li>
+                      <li>Commercial</li>
+                      <li>Utility-Scale</li>
+                      <li>Off-Grid</li>
+                    </ul>
+                    <button class="more-info">Back</button>
+                  </div>
                 </div>
-                <div class="energy-type">
-                    <i class="fas fa-wind"></i>
+              
+                <div class="energy-card" data-energy="wind">
+                  <div class="card-front">
                     <h3>Wind Energy</h3>
                     <p>Converts the kinetic energy of wind into mechanical power and electricity.</p>
-                    <button class="more-info">More Info</button>
-                    <div class="expanded-info" style="display:none;">
-                        <h4>Advantages:</h4>
-                        <ul>
-                            <li>Renewable Source</li>
-                            <li>Low Operational Costs</li>
-                            <li>Scalability</li>
-                        </ul>
-                        <h4>Disadvantages:</h4>
-                        <ul>
-                            <li>Variable Output</li>
-                            <li>Noise and Visual Impact</li>
-                            <li>Wildlife Impact</li>
-                        </ul>
-                        <h4>Applications:</h4>
-                        <ul>
-                            <li>Onshore Wind Farms</li>
-                            <li>Offshore Wind Farms</li>
-                            <li>Small Wind Systems</li>
-                        </ul>
-                    </div>
+                    <button class="more-info">Learn More</button>
+                  </div>
+                  <div class="card-back">
+                    <h4>Wind Energy</h4>
+                    <h5>Advantages:</h5>
+                    <ul>
+                      <li>Renewable Source</li>
+                      <li>Low Operational Costs</li>
+                      <li>Scalability</li>
+                    </ul>
+                    <h5>Disadvantages:</h5>
+                    <ul>
+                      <li>Variable Output</li>
+                      <li>Noise and Visual Impact</li>
+                      <li>Wildlife Impact</li>
+                    </ul>
+                    <h5>Applications:</h5>
+                    <ul>
+                      <li>Onshore Wind Farms</li>
+                      <li>Offshore Wind Farms</li>
+                      <li>Small Wind Systems</li>
+                    </ul>
+                    <button class="more-info">Back</button>
+                  </div>
                 </div>
-                <div class="energy-type">
-                    <i class="fas fa-water"></i>
+              
+                <div class="energy-card" data-energy="hydro">
+                  <div class="card-front">
                     <h3>Hydroelectric Power</h3>
                     <p>Generates electricity by harnessing the energy of moving water.</p>
-                    <button class="more-info">More Info</button>
-                    <div class="expanded-info" style="display:none;">
-                        <h4>Advantages:</h4>
-                        <ul>
-                            <li>Reliable and Consistent</li>
-                            <li>Low Emissions</li>
-                            <li>Secondary Benefits</li>
-                        </ul>
-                        <h4>Disadvantages:</h4>
-                        <ul>
-                            <li>Environmental Impact</li>
-                            <li>High Initial Costs</li>
-                            <li>Limited Locations</li>
-                        </ul>
-                        <h4>Applications:</h4>
-                        <ul>
-                            <li>Large-Scale Hydropower</li>
-                            <li>Small-Scale Hydropower</li>
-                            <li>Pumped Storage</li>
-                        </ul>
-                    </div>
+                    <button class="more-info">Learn More</button>
+                  </div>
+                  <div class="card-back">
+                    <h4>Hydroelectric Power</h4>
+                    <h5>Advantages:</h5>
+                    <ul>
+                      <li>Reliable and Consistent</li>
+                      <li>Low Emissions</li>
+                      <li>Secondary Benefits</li>
+                    </ul>
+                    <h5>Disadvantages:</h5>
+                    <ul>
+                      <li>Environmental Impact</li>
+                      <li>High Initial Costs</li>
+                      <li>Limited Locations</li>
+                    </ul>
+                    <h5>Applications:</h5>
+                    <ul>
+                      <li>Large-Scale Hydropower</li>
+                      <li>Small-Scale Hydropower</li>
+                      <li>Pumped Storage</li>
+                    </ul>
+                    <button class="more-info">Back</button>
+                  </div>
                 </div>
-                <div class="energy-type">
-                    <i class="fas fa-mountain"></i>
+              
+                <div class="energy-card" data-energy="geothermal">
+                  <div class="card-front">
                     <h3>Geothermal Energy</h3>
                     <p>Utilizes heat from the Earth's interior to generate power.</p>
-                    <button class="more-info">More Info</button>
-                    <div class="expanded-info" style="display:none;">
-                        <h4>Advantages:</h4>
-                        <ul>
-                            <li>Consistent Power Supply</li>
-                            <li>Low Emissions</li>
-                            <li>Small Footprint</li>
-                        </ul>
-                        <h4>Disadvantages:</h4>
-                        <ul>
-                            <li>Geographical Limitations</li>
-                            <li>High Initial Costs</li>
-                            <li>Potential for Induced Seismicity</li>
-                        </ul>
-                        <h4>Applications:</h4>
-                        <ul>
-                            <li>Electricity Generation</li>
-                            <li>Direct Use Applications</li>
-                            <li>Geothermal Heat Pumps</li>
-                        </ul>
-                    </div>
+                    <button class="more-info">Learn More</button>
+                  </div>
+                  <div class="card-back">
+                    <h4>Geothermal Energy</h4>
+                    <h5>Advantages:</h5>
+                    <ul>
+                      <li>Consistent Power Supply</li>
+                      <li>Low Emissions</li>
+                      <li>Small Footprint</li>
+                    </ul>
+                    <h5>Disadvantages:</h5>
+                    <ul>
+                      <li>Geographical Limitations</li>
+                      <li>High Initial Costs</li>
+                      <li>Potential for Induced Seismicity</li>
+                    </ul>
+                    <h5>Applications:</h5>
+                    <ul>
+                      <li>Electricity Generation</li>
+                      <li>Direct Use Applications</li>
+                      <li>Geothermal Heat Pumps</li>
+                    </ul>
+                    <button class="more-info">Back</button>
+                  </div>
                 </div>
-                <div class="energy-type">
-                    <i class="fas fa-seedling"></i>
+              
+                <div class="energy-card" data-energy="biofuel">
+                  <div class="card-front">
                     <h3>Biofuel</h3>
                     <p>Produced from organic materials, including plant materials and animal waste.</p>
-                    <button class="more-info">More Info</button>
-                    <div class="expanded-info" style="display:none;">
-                        <h4>Advantages:</h4>
-                        <ul>
-                            <li>Carbon Neutral</li>
-                            <li>Waste Utilization</li>
-                            <li>Domestic Production</li>
-                        </ul>
-                        <h4>Disadvantages:</h4>
-                        <ul>
-                            <li>Land Use</li>
-                            <li>Energy Intensive</li>
-                            <li>Variable Emissions</li>
-                        </ul>
-                        <h4>Applications:</h4>
-                        <ul>
-                            <li>Transportation</li>
-                            <li>Heating</li>
-                            <li>Electricity Generation</li>
-                        </ul>
-                    </div>
+                    <button class="more-info">Learn More</button>
+                  </div>
+                  <div class="card-back">
+                    <h4>Biofuel</h4>
+                    <h5>Advantages:</h5>
+                    <ul>
+                      <li>Carbon Neutral</li>
+                      <li>Waste Utilization</li>
+                      <li>Domestic Production</li>
+                    </ul>
+                    <h5>Disadvantages:</h5>
+                    <ul>
+                      <li>Land Use</li>
+                      <li>Energy Intensive</li>
+                      <li>Variable Emissions</li>
+                    </ul>
+                    <h5>Applications:</h5>
+                    <ul>
+                      <li>Transportation</li>
+                      <li>Heating</li>
+                      <li>Electricity Generation</li>
+                    </ul>
+                    <button class="more-info">Back</button>
+                  </div>
                 </div>
-            </div>
+              </div>
         </section>
     
         <section id="calculator" class="card">
-            <h2><i class="fas fa-calculator"></i> Carbon Footprint Calculator</h2>
-            <p>Calculate and track your energy-related carbon emissions.</p>
+            <h2>Carbon Footprint Calculator</h2>
             <form id="carbon-calculator">
                 <label for="electricity">Monthly Electricity Usage (kWh):</label>
-                <input type="number" id="electricity" name="electricity" required>
+                <input type="number" id="electricity" required>
                 <label for="country">Country:</label>
-                <select id="country" name="country" required>
+                <select id="country">
                     <option value="usa">United States</option>
                     <option value="uk">United Kingdom</option>
                     <option value="germany">Germany</option>
                     <option value="india">India</option>
-                </select>
-                <button type="submit" class="cta-button">Calculate</button>
+                  </select>
+                <button type="submit">Calculate</button>
             </form>
             <div id="result"></div>
         </section>
     
         <section id="simulator" class="card">
-            <h2><i class="fas fa-chart-line"></i> Interactive Energy Savings Simulator</h2>
-            <p>Simulate potential energy savings based on different efficiency measures.</p>
+            <h2>Interactive Energy Savings Simulator</h2>
             <form id="savings-simulator">
                 <label for="current-usage">Current Monthly Energy Usage (kWh):</label>
-                <input type="number" id="current-usage" name="current-usage" required>
+                <input type="number" id="current-usage" required>
                 <label for="savings-percentage">Expected Savings Percentage:</label>
-                <input type="range" id="savings-percentage" name="savings-percentage" min="0" max="100" value="20">
+                <input type="range" id="savings-percentage" min="0" max="100" value="20">
                 <output for="savings-percentage">20%</output>
-                <button type="submit" class="cta-button">Simulate Savings</button>
+                <button type="submit">Simulate Savings</button>
             </form>
             <div id="savings-result"></div>
         </section>
@@ -270,7 +285,6 @@
     <div id="tooltip-content">
         <h3>Energy Saving Tips</h3>
         <p id="current-tip"></p>
-    </div>
     </div>
 
     <footer>
