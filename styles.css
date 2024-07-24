@@ -4,6 +4,7 @@
     --accent-color: #fdd835;
     --background-color: #f5f5f5;
     --text-color: #333333;
+    --green-accent: #4caf50l;
 }
 
 body {
@@ -86,28 +87,55 @@ h1, h2, h3 {
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    border: 2px solid var(--green-accent);
+    cursor: pointer;
+    font-size: 1rem;
 }
 
 .cta-button:hover {
-    background-color: #fbc02d;
+    background-color: var(--green-accent);
+    color: white;
 }
 
 .energy-types {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
 }
 
-.energy-type {
-    background-color: #f9f9f9;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
+.energy-card {
+    perspective: 1000px;
+    height: 300px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    overflow-y: auto;
+}
+
+.energy-card.flipped .card-front {
+    transform: rotateY(180deg);
+}
+
+.energy-card.flipped .card-back {
+    transform: rotateY(0);
 }
 
 .more-info {
@@ -116,33 +144,14 @@ h1, h2, h3 {
     border: none;
     color: var(--primary-color);
     cursor: pointer;
-    display: flex;
-    align-items: center;
+    padding: 5px 10px;
+    font-size: 1rem;
+    transition: color 0.3s ease;
 }
 
-.more-info::before {
-    content: '\f0d7';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    margin-right: 5px;
-}
-
-.expanded-info {
-    text-align: left;
-}
-
-.energy-type i {
-    font-size: 2rem;
+.more-info:hover {
     color: var(--secondary-color);
-    margin-bottom: 0.5rem;
 }
-.energy-type button {
-    padding: 25px;
-    background-color: yellowgreen;
-    margin: 2rem;
-    border-radius: 15px;
-}
-
 
 form {
     display: grid;
@@ -164,91 +173,6 @@ footer {
     margin-top: 2rem;
 }
 
-#tooltip-container {
-    position: fixed;
-    right: -250px;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: right 0.3s ease;
-    z-index: 1000;
-}
-
-#tooltip-trigger {
-    position: absolute;
-    left: -60px;
-    top: 50%;
-    transform: translateY(-50%) rotate(-90deg);
-    background-color: var(--accent-color);
-    color: var(--text-color);
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px 5px 0 0;
-    font-weight: bold;
-}
-
-#tooltip-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px 0 0 10px;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    width: 250px;
-}
-
-#tooltip-content h3 {
-    margin-top: 0;
-    color: var(--primary-color);
-}
-
-#tooltip-content ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#tooltip-content li {
-    margin-bottom: 10px;
-}
-
-#tooltip-content i {
-    color: var(--secondary-color);
-    margin-right: 10px;
-}
-
-#tooltip-container:hover {
-    right: 0;
-}
-
-.savings-chart {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    height: 200px;
-    margin-top: 20px;
-}
-
-.savings-chart .bar {
-    width: 80px;
-    background-color: var(--primary-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px;
-    color: white;
-    transition: height 0.5s ease;
-}
-
-.savings-chart .bar.new {
-    background-color: var(--secondary-color);
-}
-
-.savings-chart .bar span {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg);
-    padding: 5px;
-}
-
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
@@ -261,4 +185,108 @@ footer {
     .energy-types {
         grid-template-columns: 1fr;
     }
+}
+
+/* Tips design */
+#tooltip-content {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    width: 250px;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+#tooltip-content:hover {
+    transform: rotate(5deg);
+}
+
+#tooltip-content h3 {
+    margin-top: 0;
+    color: var(--accent-color);
+    font-size: 1.2em;
+}
+
+#current-tip {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/* Kids' Corner styles */
+.match-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.match-item {
+    background-color: #fff;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.match-item.selected {
+    background-color: var(--accent-color);
+}
+
+.match-item.matched {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.quiz-question {
+    margin-bottom: 1rem;
+}
+
+.quiz-question label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Header and footer styles */
+header, footer {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+}
+
+header a, footer {
+    color: var(--accent-color);
+}
+
+/* Energy card button styles */
+.energy-card .more-info.cta-button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.energy-card .more-info.cta-button:hover {
+    background-color: #fbc02d;
+}
+
+/* Tagline Colour*/
+.tagline {
+    color: var(--green-accent);
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.matched-correct {
+    background-color: var(--green-accent);
+    color: white;
+}
+
+.matched-incorrect {
+    background-color: #f44336;
+    color: white;
 }
