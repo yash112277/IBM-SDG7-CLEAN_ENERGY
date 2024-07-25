@@ -70,6 +70,15 @@ main {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.card h1{
+    margin-left: 150px;
+    font-weight: 900;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: solid var(--accent-color);
+    border-radius: 25px;
+    padding-left: 15px;
+}
+
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
