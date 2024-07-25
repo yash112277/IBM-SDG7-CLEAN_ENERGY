@@ -199,7 +199,7 @@ footer {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     width: 250px;
-    transition: opacity 0.3s ease;
+    transition: transform 0.3s ease;
     z-index: 1000;
 }
 
@@ -211,6 +211,20 @@ footer {
     margin-top: 0;
     color: var(--accent-color);
     font-size: 1.2em;
+}
+
+#tooltip-content.hidden {
+    transform: translateX(calc(100% - 30px));
+}
+
+#tooltip-content::before {
+    content: ' ❯ ';
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: var(--accent-color);
 }
 
 #current-tip {

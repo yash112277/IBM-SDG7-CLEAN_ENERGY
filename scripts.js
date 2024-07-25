@@ -19,13 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function startMatchGame() {
-
-        matchItems.forEach(item => {
-            item.addEventListener('click', function() {
-
-            });
-        });
-
         shuffleArray(descriptions);
         let gameHTML = '<h3>Match the energy source to its description!</h3>';
         gameHTML += '<div class="match-container">';
@@ -38,11 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
         gameHTML += '</div>';
         gameHTML += '<button id="check-matches" class="cta-button">Check Matches</button>';
         matchGame.innerHTML = gameHTML;
-
+    
         const matchItems = document.querySelectorAll('.match-item');
         let selectedSource = null;
         let selectedDesc = null;
-
+    
         matchItems.forEach(item => {
             item.addEventListener('click', function() {
                 if (this.dataset.source) {
@@ -54,19 +47,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.classList.add('selected');
                     selectedDesc = this;
                 }
-
+    
                 if (selectedSource && selectedDesc) {
                     selectedSource.classList.add('matched');
                     selectedDesc.classList.add('matched');
                     selectedSource = null;
                     selectedDesc = null;
                 }
-
-                
-
             });
         });
-
+    
         document.getElementById('check-matches').addEventListener('click', function() {
             const matches = document.querySelectorAll('.matched');
             let correct = 0;
@@ -173,11 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
     calculatorButton.classList.add('cta-button');
     simulatorButton.classList.add('cta-button');
 
-    // Update header and footer colors
-    document.querySelector('header').style.backgroundColor = '#fdd835';
-    document.querySelector('footer').style.backgroundColor = '#fdd835';
-    document.querySelectorAll('header a, footer').forEach(el => el.style.color = '#333333');
-
     // Update Renewable Energy section buttons
     document.querySelectorAll('.energy-card .more-info').forEach(button => {
         button.classList.add('cta-button');
@@ -194,26 +179,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-
     const tooltip = document.getElementById('tooltip-content');
     const tipElement = document.getElementById('current-tip');
     let currentTipIndex = 0;
-    let isTooltipVisible = true;
-
+    
     tooltip.addEventListener('click', function() {
-        if (isTooltipVisible) {
-            this.style.display = 'none';
-            isTooltipVisible = false;
-        }
+        this.classList.toggle('hidden');
     });
     
-    document.addEventListener('click', function(event) {
-        if (!isTooltipVisible && !tooltip.contains(event.target)) {
-            tooltip.style.display = 'block';
-            isTooltipVisible = true;
-        }
-    });
-
     const tips = [
         "Turn off lights when not in use to save energy.",
         "Use energy-efficient LED bulbs to reduce electricity consumption.",
@@ -226,15 +199,15 @@ document.addEventListener('DOMContentLoaded', function() {
         "Clean or replace HVAC filters regularly for better efficiency.",
         "Use energy-efficient appliances with ENERGY STAR certification."
     ];
-
+    
     function showNextTip() {
         tipElement.textContent = tips[currentTipIndex];
         currentTipIndex = (currentTipIndex + 1) % tips.length;
     }
-
+    
     // Show first tip immediately
     showNextTip();
-
+    
     // Rotate tips every 30 seconds
     setInterval(showNextTip, 30000);
 
@@ -291,17 +264,24 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentUsage = parseFloat(document.getElementById('current-usage').value);
         const savingsPercentage = parseFloat(savingsPercentageInput.value);
         const electricityRate = 0.15; // Assume $0.15 per kWh
-
+    
         const annualUsage = currentUsage * 12;
         const savedEnergy = annualUsage * (savingsPercentage / 100);
         const newUsage = annualUsage - savedEnergy;
         const moneySaved = savedEnergy * electricityRate;
-
+    
+        const ledSavings = "Switching to LED bulbs can save up to 80% energy compared to traditional filament bulbs.";
+        const solarPanelSavings = "A 5kW solar panel system can typically save around 7,500 kWh per year, which is about $1,125 annually.";
+    
         savingsResult.innerHTML = `
             <h3>Your Potential Savings</h3>
             <p>Energy Saved: ${savedEnergy.toFixed(2)} kWh per year</p>
             <p>New Annual Usage: ${newUsage.toFixed(2)} kWh</p>
             <p>Money Saved: $${moneySaved.toFixed(2)} per year</p>
+            <h4>Energy Saving Tips:</h4>
+            <p>${ledSavings}</p>
+            <p>${solarPanelSavings}</p>
+            <p>Adjust the savings percentage based on the energy-saving measures you plan to implement.</p>
         `;
     });
 
@@ -310,17 +290,47 @@ document.addEventListener('DOMContentLoaded', function() {
         maharashtra: [
             "Maharashtra Solar Rooftop Subsidy",
             "Electric Vehicle Policy 2021",
-            "Energy Conservation Building Code"
+            "Energy Conservation Building Code",
+            "Mukhyamantri Saur Krishi Vahini Yojana: Provides daytime solar power to farmers",
+            "MEDA Initiatives: Subsidies for solar, wind, and biogas projects"
         ],
         gujarat: [
             "Gujarat Solar Power Policy 2021",
             "Wind Power Policy 2016",
-            "Electric Vehicle Policy 2021"
+            "Electric Vehicle Policy 2021",
+            "Surya Urja Rooftop Yojana: Subsidizes rooftop solar installations",
+            "Wind-Solar Hybrid Power Policy: Promotes hybrid power projects with incentives for land and infrastructure"
         ],
         karnataka: [
             "Karnataka Renewable Energy Policy 2022-2027",
             "Solar Rooftop Incentive Program",
-            "Electric Vehicle and Energy Storage Policy 2017"
+            "Electric Vehicle and Energy Storage Policy 2017",
+            "Karnataka Solar Policy: Aims to install 10 GW of solar power by 2025",
+            "KREDL Initiatives: Facilitates renewable energy projects including solar, wind, and biomass"
+        ],
+        "andaman and nicobar islands": [
+            "Solar Power Projects: Incentives to reduce reliance on diesel generators",
+            "Energy Efficiency Initiatives: Programs to promote energy efficiency and renewable energy adoption"
+        ],
+        "dadra and nagar haveli and daman and diu": [
+            "Solar Rooftop Scheme: Subsidies for residential and commercial rooftop solar installations",
+            "Renewable Energy Policy: Support for small-scale solar and wind projects"
+        ],
+        lakshadweep: [
+            "Lakshadweep Renewable Energy Development Agency (LREDA): Focuses on solar energy projects",
+            "Solar Power Projects: Financial support for solar installations"
+        ],
+        ladakh: [
+            "Solar Energy Initiatives: Promotes solar power projects to leverage high solar insolation",
+            "Small Hydro Projects: Encourages small hydro projects to utilize water resources"
+        ],
+        delhi: [
+            "Mukhyamantri Solar Power Scheme: Subsidies for residential rooftop solar installations",
+            "Net Metering: Allows feeding excess solar power back into the grid for credits",
+            "Property Tax Rebates: For properties with solar installations"
+        ],
+        chandigarh: [
+            "Chandigarh Solar City Project: Aims to make Chandigarh a model solar city"
         ]
     };
 
