@@ -1,0 +1,306 @@
+:root {
+    --primary-color: #1a73e8;
+    --secondary-color: #4caf50;
+    --accent-color: #fdd835;
+    --background-color: #f5f5f5;
+    --text-color: #333333;
+    --green-accent: #4caf50l;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--primary-color);
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin-left: 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: 2px solid var(--green-accent);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.cta-button:hover {
+    background-color: var(--green-accent);
+    color: white;
+}
+
+.energy-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.energy-card {
+    perspective: 1000px;
+    height: 300px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    overflow-y: auto;
+}
+
+.energy-card.flipped .card-front {
+    transform: rotateY(180deg);
+}
+
+.energy-card.flipped .card-back {
+    transform: rotateY(0);
+}
+
+.more-info {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.more-info:hover {
+    color: var(--secondary-color);
+}
+
+form {
+    display: grid;
+    gap: 1rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    nav ul {
+        margin-top: 1rem;
+    }
+
+    .energy-types {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tips design */
+#tooltip-content {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    width: 250px;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+#tooltip-content:hover {
+    transform: rotate(5deg);
+}
+
+#tooltip-content h3 {
+    margin-top: 0;
+    color: var(--accent-color);
+    font-size: 1.2em;
+}
+
+#tooltip-content.hidden {
+    transform: translateX(calc(100% - 30px));
+}
+
+#tooltip-content::before {
+    content: ' ❯ ';
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: var(--accent-color);
+}
+
+#current-tip {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/* Kids' Corner styles */
+.match-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.match-item {
+    background-color: #fff;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.match-item.selected {
+    background-color: var(--accent-color);
+}
+
+.match-item.matched {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.quiz-question {
+    margin-bottom: 1rem;
+}
+
+.quiz-question label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Header and footer styles */
+header, footer {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+}
+
+header a, footer {
+    color: var(--accent-color);
+}
+
+/* Energy card button styles */
+.energy-card .more-info.cta-button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.energy-card .more-info.cta-button:hover {
+    background-color: #fbc02d;
+}
+
+/* Tagline Colour*/
+.tagline {
+    color: var(--green-accent);
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.matched-correct {
+    background-color: var(--green-accent);
+    color: white;
+}
+
+.matched-incorrect {
+    background-color: #f44336;
+    color: white;
+}
