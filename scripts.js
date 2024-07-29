@@ -1,4 +1,34 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    const factBtn = document.getElementById('random-fact-btn');
+    const modal = document.getElementById('fact-modal');
+    const closeBtn = modal.querySelector('.close');
+    const factText = document.getElementById('random-fact');
+    const tipElement = document.getElementById('tooltip-content');
+
+    const facts = [
+        "Solar energy is the most abundant energy source on Earth.",
+        "Wind power is one of the fastest-growing energy sources globally.",
+        "Geothermal energy comes from heat stored in the Earth.",
+        "Hydropower is the largest source of renewable electricity in the world.",
+        "Bioenergy can be produced from a wide range of organic materials."
+    ];
+
+    factBtn.addEventListener('click', function() {
+        const randomFact = facts[Math.floor(Math.random() * facts.length)];
+        factText.textContent = randomFact;
+        modal.style.display = "block";
+    });
+
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
     
     // Kids' Corner - Energy Match Game
     const matchGame = document.getElementById('energy-match');
@@ -22,16 +52,18 @@ document.addEventListener('DOMContentLoaded', function() {
         shuffleArray(descriptions);
         let gameHTML = '<h3>Match the energy source to its description!</h3>';
         gameHTML += '<div class="match-container">';
+        gameHTML += '<div class="sources-column">';
         energySources.forEach((source, index) => {
             gameHTML += `<div class="match-item" data-source="${source}">${source}</div>`;
         });
+        gameHTML += '</div><div class="descriptions-column">';
         descriptions.forEach((desc, index) => {
             gameHTML += `<div class="match-item" data-desc="${index}">${desc}</div>`;
         });
-        gameHTML += '</div>';
+        gameHTML += '</div></div>';
         gameHTML += '<button id="check-matches" class="cta-button">Check Matches</button>';
         matchGame.innerHTML = gameHTML;
-    
+
         const matchItems = document.querySelectorAll('.match-item');
         let selectedSource = null;
         let selectedDesc = null;
@@ -59,15 +91,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
         document.getElementById('check-matches').addEventListener('click', function() {
             const matches = document.querySelectorAll('.matched');
-            let correct = 0;
             matches.forEach((match, index) => {
                 if (index % 2 === 0) {
                     const sourceIndex = energySources.indexOf(match.textContent);
                     const descIndex = descriptions.indexOf(matches[index + 1].textContent);
-                    if (sourceIndex === descIndex) correct++;
+                    if (sourceIndex === descIndex) {
+                        match.classList.add('matched-correct');
+                        matches[index + 1].classList.add('matched-correct');
+                    } else {
+                        match.classList.add('matched-incorrect');
+                        matches[index + 1].classList.add('matched-incorrect');
+                    }
                 }
             });
-            alert(`You got ${correct} out of 5 matches correct!`);
         });
     }
 
@@ -141,18 +177,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showQuizResult() {
         let score = 0;
+        let resultHTML = '<h3>Quiz Results</h3>';
         quizQuestions.forEach((q, index) => {
             const selected = document.querySelector(`input[name="q${index}"]:checked`);
-            if (selected && parseInt(selected.value) === q.answer) score++;
+            const userAnswer = selected ? parseInt(selected.value) : -1;
+            const isCorrect = userAnswer === q.answer;
+            if (isCorrect) score++;
+            
+            resultHTML += `
+                <div class="quiz-result ${isCorrect ? 'correct' : 'incorrect'}">
+                    <p><strong>Question ${index + 1}:</strong> ${q.question}</p>
+                    <p>Your answer: ${userAnswer >= 0 ? q.options[userAnswer] : 'Not answered'}</p>
+                    <p>Correct answer: ${q.options[q.answer]}</p>
+                </div>
+            `;
         });
-        quizGame.innerHTML = `<h3>Quiz Complete!</h3>
-            <p>You got ${score} out of ${quizQuestions.length} questions correct!</p>
+        resultHTML += `<p>You got ${score} out of ${quizQuestions.length} questions correct!</p>
             <button id="restart-quiz" class="cta-button">Restart Quiz</button>`;
         
-        document.getElementById('restart-quiz').addEventListener('click', function() {
-            currentQuestionIndex = 0;
-            startQuiz();
-        });
+        quizGame.innerHTML = resultHTML;
+        
+        document.getElementById('restart-quiz').addEventListener('click', startQuiz);
     }
 
     document.querySelector('#energy-quiz .cta-button').addEventListener('click', startQuiz);
@@ -179,12 +224,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-    const tooltip = document.getElementById('tooltip-content');
-    const tipElement = document.getElementById('current-tip');
-    let currentTipIndex = 0;
     
+    const tooltip = document.getElementById('tooltip-content');
+    tooltip.classList.add('visible');
+
     tooltip.addEventListener('click', function() {
-        this.classList.toggle('hidden');
+        this.classList.toggle('visible');
     });
     
     const tips = [
@@ -204,6 +249,8 @@ document.addEventListener('DOMContentLoaded', function() {
         tipElement.textContent = tips[currentTipIndex];
         currentTipIndex = (currentTipIndex + 1) % tips.length;
     }
+
+    let currentTipIndex = 0;
     
     // Show first tip immediately
     showNextTip();
@@ -237,14 +284,22 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const annualElectricityUsage = electricity * 12;
         const totalCarbonFootprint = annualElectricityUsage * emissionFactors[country];
-
+    
+        const treesNeeded = (totalCarbonFootprint / 200).toFixed(2);
+        const carsNotDriven = (totalCarbonFootprint / 4000).toFixed(2);
+    
         result.innerHTML = `
             <h3>Your Annual Carbon Footprint</h3>
             <p>${totalCarbonFootprint.toFixed(2)} kg CO2</p>
-            <p>This is equivalent to:</p>
+            <p>To offset this:</p>
             <ul>
-                <li>${(totalCarbonFootprint / 200).toFixed(2)} trees needed to offset</li>
-                <li>${(totalCarbonFootprint / 4000).toFixed(2)} cars driven for one year</li>
+                <li>${treesNeeded} trees need to be planted</li>
+                <li>${carsNotDriven} cars should not be driven for a year</li>
+            </ul>
+            <p>Alternatively, you could:</p>
+            <ul>
+                <li>Carpool with ${Math.ceil(carsNotDriven)} other people for a year</li>
+                <li>Use public transportation or bike for ${Math.ceil(carsNotDriven * 30)} days</li>
             </ul>
         `;
     });

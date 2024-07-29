@@ -3,29 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energy Tracker Website </title>
+    <title> Mr. SunShine </title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
+      <div class="logo">
+        <img src="mrsunriseonlylogo.png" alt="Logo">
+      </div>
         <nav>
-            <div class="logo">Energy Tracker</div>
+            <div class="logo">Mr. SunShine</div>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#renewable">Renewable Energy</a></li>
                 <li><a href="#calculator">Carbon Calculator</a></li>
+                <li><a href="#ev-cars">EV Cars</a></li>
                 <li><a href="#simulator">Energy Savings Simulator</a></li>
+                <li><a href="#incentives">Local Incentives Finder</a></li>
+                <li><a href="#kids-corner">Kids Corner</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="home" class="card">
-            <h1>Welcome to Energy Tracker Website</h1>
-            <p class="tagline">For a Better and Cleaner Tomorrow</p>
-            <p>Explore renewable energy, energy efficiency, and calculate your carbon footprint.</p>
-            <a href="#renewable" class="cta-button">Get Started</a>
-        </section>
+      <section id="home" class="section card">
+        <div class="welcome-content">
+            <h1>Welcome to Mr. SunShine</h1>
+            <p class="description">Your guide to sustainable energy usage and savings</p>
+            <div class="cta-container">
+                <a href="#renewable" class="cta-button">Get Started</a>
+                <button id="random-fact-btn" class="cta-button secondary">Energy Fact</button>
+            </div>
+        </div>
+        <div class="welcome-image">
+          <img src="ProperCompanyLogo.png" alt="Mr. Sunrise Company Logo" class="welcome-logo">
+        </div>
+        <div id="fact-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Did You Know?</h2>
+                <p id="random-fact"></p>
+            </div>
+        </div>
+    </section>
     
         <section id="renewable" class="card">
             <h2><i class="fas fa-sun"></i> Renewable Energy Education</h2>
@@ -34,6 +54,7 @@
                 <div class="energy-card" data-energy="solar">
                   <div class="card-front">
                     <h3>Solar Energy</h3>
+                    <img src="htmlgreensolarsunimg.jpg" alt="Solar Energy" style="width: 250px; height: 100px;">
                     <p>Harnesses the sun's power using photovoltaic cells and solar thermal systems.</p>
                     <button class="more-info">Learn More</button>
                   </div>
@@ -65,6 +86,7 @@
                 <div class="energy-card" data-energy="wind">
                   <div class="card-front">
                     <h3>Wind Energy</h3>
+                    <img src="windenergy.jpg" alt="Wind Energy" style="width: 250px; height: 100px;">
                     <p>Converts the kinetic energy of wind into mechanical power and electricity.</p>
                     <button class="more-info">Learn More</button>
                   </div>
@@ -95,6 +117,7 @@
                 <div class="energy-card" data-energy="hydro">
                   <div class="card-front">
                     <h3>Hydroelectric Power</h3>
+                    <img src="hydroelectric.jpg" alt="Hydro Electric" style="width: 250px; height: 100px;">
                     <p>Generates electricity by harnessing the energy of moving water.</p>
                     <button class="more-info">Learn More</button>
                   </div>
@@ -125,6 +148,7 @@
                 <div class="energy-card" data-energy="geothermal">
                   <div class="card-front">
                     <h3>Geothermal Energy</h3>
+                    <img src="geothermal.jpg" alt="GeoThermal Energy" style="width: 250px; height: 100px;">
                     <p>Utilizes heat from the Earth's interior to generate power.</p>
                     <button class="more-info">Learn More</button>
                   </div>
@@ -155,6 +179,7 @@
                 <div class="energy-card" data-energy="biofuel">
                   <div class="card-front">
                     <h3>Biofuel</h3>
+                    <img src="biofuel.jpg" alt="BioFuel Car" style="width: 250px; height: 100px;">
                     <p>Produced from organic materials, including plant materials and animal waste.</p>
                     <button class="more-info">Learn More</button>
                   </div>
@@ -200,6 +225,20 @@
             </form>
             <div id="result"></div>
         </section>
+
+        <section id="ev-cars" class="card">
+          <h2>Electric Vehicles (EVs)</h2>
+          <div class="ev-content">
+              <p>Electric vehicles are a great way to reduce your carbon footprint. They offer many benefits including:</p>
+              <ul>
+                  <li>Zero emissions</li>
+                  <li>Lower operating costs</li>
+                  <li>Reduced noise pollution</li>
+                  <li>Government incentives</li>
+              </ul>
+          </div>
+        </section>
+      
     
         <section id="simulator" class="card">
             <h2>Interactive Energy Savings Simulator</h2>
@@ -288,7 +327,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 SDG-7 Energy Tracker. All rights reserved.</p>
+        <p>&copy; 2024 Mr.SunShine ,All rights reserved.</p>
     </footer>
 
     <script src="scripts.js"></script>

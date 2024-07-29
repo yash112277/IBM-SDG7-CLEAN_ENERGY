@@ -4,16 +4,145 @@
     --accent-color: #fdd835;
     --background-color: #f5f5f5;
     --text-color: #333333;
-    --green-accent: #4caf50l;
+    --green-accent: #4caf50;
+}
+
+#ev-cars {
+    padding: 3rem;
+    background-color: var(--background-color);
+    justify-content: space-between;
+    text-align: left;
+}
+
+#ev-cars h2 {
+    color: var(--primary-color);
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.ev-content {
+    max-width: 800px;
+    margin: 0 ;
+    padding-left: 15px;
+    
+
+
+}
+
+.ev-content ul {
+    list-style-type: disc;
+    padding-left: 2px;
+
+}
+
+#home {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.welcome-content {
+    flex: 1;
+    padding-right: 2rem;
+}
+.welcome-content h1 {
+    border: none;
+    padding: 0;
+    color: var(--primary-color);
+    text-align: left;
+}
+
+.welcome-image {
+    flex: 1;
+    text-align: center;
+}
+
+
+.welcome-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+
+.modal-content {
+    background-color: var(--background-color);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.close {
+    color: var(--text-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: var(--primary-color);
+}
+
+#random-fact {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color);
 }
 
 body {
+    background-image: url(C:\Users\91962\sdg7-energy\IBM-SDG7-CLEAN_ENERGY\bkg2.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
     margin: 0;
     padding: 0;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* Adjust the last value (0.7) for transparency */
+    z-index: -1;
+}
+
+main, header, footer {
+    position: relative;
+    z-index: 1;
 }
 
 header {
@@ -31,7 +160,7 @@ nav {
 }
 
 .logo {
-    color: white;
+    color: var(--accent-color);
     font-size: 1.5rem;
     font-weight: bold;
 }
@@ -62,21 +191,12 @@ main {
 }
 
 .card {
-    background: white;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     border-radius: 10px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card h1{
-    margin-left: 150px;
-    font-weight: 900;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border: solid var(--accent-color);
-    border-radius: 25px;
-    padding-left: 15px;
 }
 
 .card:hover {
@@ -88,28 +208,32 @@ h1, h2, h3 {
     color: var(--primary-color);
 }
 
-.cta-button {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: var(--text-color);
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    border: 2px solid var(--green-accent);
-    cursor: pointer;
+.cta-button, #calculator button, #simulator button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.cta-button:hover {
+.cta-button:hover, #calculator button:hover, #simulator button:hover {
     background-color: var(--green-accent);
-    color: white;
+}
+
+.cta-container {
+    display: flex;
+    gap: 1rem;
 }
 
 .energy-types {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
+    padding-right: 25px;
 }
 
 .energy-card {
@@ -117,6 +241,9 @@ h1, h2, h3 {
     height: 300px;
     position: relative;
     margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    /*margin-top: 10px;*/
 }
 
 .card-front, .card-back {
@@ -183,16 +310,36 @@ footer {
 }
 
 @media (max-width: 768px) {
-    nav {
+    #home {
         flex-direction: column;
+        padding: 1.5rem;
     }
 
-    nav ul {
-        margin-top: 1rem;
+    .welcome-content, .welcome-image {
+        flex: none;
+        width: 100%;
+        padding-right: 0;
     }
 
     .energy-types {
         grid-template-columns: 1fr;
+    }
+
+    .cta-container {
+        flex-direction: column;
+    }
+
+    .cta-button {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
     }
 }
 
@@ -200,15 +347,15 @@ footer {
 #tooltip-content {
     position: fixed;
     top: 50%;
-    right: 20px;
+    right: -220px;
     transform: translateY(-50%);
     background-color: var(--primary-color);
     color: white;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 8px 0 0 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     width: 250px;
-    transition: transform 0.3s ease;
+    transition: right 0.3s ease;
     z-index: 1000;
 }
 
@@ -226,14 +373,21 @@ footer {
     transform: translateX(calc(100% - 30px));
 }
 
+#tooltip-content.visible {
+    right: 0;
+}
+
 #tooltip-content::before {
-    content: ' ❯ ';
+    content: '❯';
     position: absolute;
-    left: 5px;
+    left: -30px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 20px;
+    background-color: var(--primary-color);
     color: var(--accent-color);
+    padding: 10px;
+    border-radius: 8px 0 0 8px;
+    font-size: 20px;
 }
 
 #current-tip {
@@ -243,10 +397,16 @@ footer {
 
 /* Kids' Corner styles */
 .match-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 1rem;
+}
+
+.sources-column, .descriptions-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .match-item {
@@ -276,6 +436,22 @@ footer {
     margin-bottom: 0.5rem;
 }
 
+.quiz-result {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.quiz-result.correct {
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 1px solid var(--green-accent);
+}
+
+.quiz-result.incorrect {
+    background-color: rgba(244, 67, 54, 0.1);
+    border: 1px solid #f44336;
+}
+
 /* Header and footer styles */
 header, footer {
     background-color: var(--primary-color);
@@ -298,11 +474,12 @@ header a, footer {
 
 /* Tagline Colour*/
 .tagline {
-    color: var(--green-accent);
-    font-style: italic;
-    text-align: center;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
     margin-bottom: 1rem;
 }
+
+
 
 .matched-correct {
     background-color: var(--green-accent);
@@ -312,4 +489,18 @@ header a, footer {
 .matched-incorrect {
     background-color: #f44336;
     color: white;
+}
+
+.logo img{
+    height: 65px;
+    width: 100px;
+    position:absolute;
+    border-radius: 150px;
+    border: solid 2px;
+    bottom: 615px;
+}
+
+.welcome-logo{
+    max-width: 100%;
+    height: auto;
 }
