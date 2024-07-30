@@ -116,7 +116,7 @@
 }
 
 body {
-    background-image: url(C:\Users\91962\sdg7-energy\IBM-SDG7-CLEAN_ENERGY\bkg2.jpg);
+    background-image: url(bkg2.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -138,6 +138,7 @@ body::before {
     height: 100%;
     background-color: rgba(255, 255, 255, 0.7); /* Adjust the last value (0.7) for transparency */
     z-index: -1;
+    opacity: 1%;
 }
 
 main, header, footer {
@@ -149,6 +150,9 @@ header {
     background-color: var(--primary-color);
     padding: 1rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav {
@@ -163,11 +167,15 @@ nav {
     color: var(--accent-color);
     font-size: 1.5rem;
     font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 
 nav ul {
     display: flex;
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -178,10 +186,13 @@ nav ul li a {
     color: white;
     text-decoration: none;
     transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
 }
 
 nav ul li a:hover {
     color: var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 main {
@@ -208,7 +219,7 @@ h1, h2, h3 {
     color: var(--primary-color);
 }
 
-.cta-button, #calculator button, #simulator button {
+.cta-button, #calculator button, #simulator button{
     background-color: var(--secondary-color);
     color: white;
     border: none;
@@ -309,7 +320,56 @@ footer {
     margin-top: 2rem;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
 @media (max-width: 768px) {
+
+    header{
+        padding: 0.5rem;
+    }
+
+    .match-container{
+        flex-direction: column;
+    }
+
+    .sources-column, .descriptions-column{
+        width: 100%;
+    }
+
+    .match-item{
+        margin-bottom: 10px;
+    }
+
     #home {
         flex-direction: column;
         padding: 1.5rem;
@@ -329,17 +389,73 @@ footer {
         flex-direction: column;
     }
 
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+
     .cta-button {
-        width: 100%;
-        margin-bottom: 1rem;
+        display: inline-block;
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    nav {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
     }
 
     nav ul {
-        flex-direction: column;
+        flex-direction: row;
+        width: 100%;
+        display: flex !important;
+    }
+
+    nav ul.show {
+        display: flex;
     }
 
     nav ul li {
-        margin: 0.5rem 0;
+        margin: 1rem;
+        width: 100%;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 0.5rem 0;
+    }
+
+    .logo{
+        margin-bottom: 0.5rem;
+    }
+
+    .energy-types{
+        grid-template-columns: 1fr;
+    }
+
+    #tooltip-content{
+        width: 200px;
+    }
+
+    #tooltip-content.hidden{
+        right: -220px;
     }
 }
 
@@ -358,11 +474,11 @@ footer {
     transition: right 0.3s ease;
     z-index: 1000;
 }
-
+/*
 #tooltip-content:hover {
     transform: rotate(5deg);
 }
-
+*/
 #tooltip-content h3 {
     margin-top: 0;
     color: var(--accent-color);
@@ -371,6 +487,10 @@ footer {
 
 #tooltip-content.hidden {
     transform: translateX(calc(100% - 30px));
+}
+
+#tooltip-content.hidden::before {
+    left: -30px;
 }
 
 #tooltip-content.visible {
@@ -388,6 +508,7 @@ footer {
     padding: 10px;
     border-radius: 8px 0 0 8px;
     font-size: 20px;
+    cursor: pointer;
 }
 
 #current-tip {
@@ -420,6 +541,10 @@ footer {
 
 .match-item.selected {
     background-color: var(--accent-color);
+}
+
+.section {
+    animation: fadeIn 1s ease-out;
 }
 
 .match-item.matched {
@@ -472,6 +597,10 @@ header a, footer {
     background-color: #fbc02d;
 }
 
+.energy-card:hover img {
+    transform: scale(1.05);
+}
+
 /* Tagline Colour*/
 .tagline {
     font-size: 1.2rem;
@@ -492,15 +621,30 @@ header a, footer {
 }
 
 .logo img{
-    height: 65px;
+    height: 40px;
+    width: auto;
+    margin-right: 10px;
+    /*height: 65px;
     width: 100px;
     position:absolute;
     border-radius: 150px;
     border: solid 2px;
-    bottom: 615px;
+    bottom: 615px;*/
 }
 
 .welcome-logo{
     max-width: 100%;
     height: auto;
 }
+
+.section {
+    animation: fadeIn 1s ease-out;
+  }
+  
+  .cta-button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .cta-button:hover {
+    transform: translateY(-2px);
+  }

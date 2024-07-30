@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = modal.querySelector('.close');
     const factText = document.getElementById('random-fact');
     const tipElement = document.getElementById('tooltip-content');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('nav ul');
+
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
+    });
+
 
     const facts = [
         "Solar energy is the most abundant energy source on Earth.",
@@ -88,8 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-    
-        document.getElementById('check-matches').addEventListener('click', function() {
+
+        function checkMatches() {
             const matches = document.querySelectorAll('.matched');
             matches.forEach((match, index) => {
                 if (index % 2 === 0) {
@@ -104,9 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             });
-        });
+        }
+        document.getElementById('check-matches').addEventListener('click', checkMatches);
     }
-
     document.querySelector('#energy-match .cta-button').addEventListener('click', startMatchGame);
 
     // Kids' Corner - Energy Quiz
@@ -227,6 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const tooltip = document.getElementById('tooltip-content');
     tooltip.classList.add('visible');
+    const tooltipArrow = tooltip.querySelector('::before');
 
     tooltip.addEventListener('click', function() {
         this.classList.toggle('visible');
@@ -407,7 +415,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    const energyCards = document.querySelectorAll('.energy-card');
+    energyCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'scale(1.05)';
+            card.style.transition = 'transform 0.3s ease-in-out';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'scale(1)';
+        });
+    });
+
+    // Add smooth scrolling animation
+    const scrollLinks = document.querySelectorAll('a[href^="#"]');
+    scrollLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(link.getAttribute('href'));
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
     // Dynamic year in footer
     const currentYear = new Date().getFullYear();
-    document.querySelector('footer p').textContent = `© ${currentYear} SDG-7 Energy Tracker. All rights reserved.`;
+    document.querySelector('footer p').textContent = `© ${currentYear} Mr. SunShine. All rights reserved.`;
 });
