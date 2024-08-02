@@ -163,6 +163,7 @@ nav {
     margin: 0 auto;
 }
 
+
 .logo {
     color: var(--accent-color);
     font-size: 1.5rem;
@@ -351,6 +352,12 @@ footer {
     max-width: 100%;
     box-sizing: border-box;
 }
+nav img{
+    
+    border-radius: 100px;
+    border: solid rgba(139, 157, 172, 0.897) ;
+}
+
 
 @media (max-width: 768px) {
 
@@ -396,7 +403,7 @@ footer {
         color: white;
         font-size: 1.5rem;
         cursor: pointer;
-        position: absolute;
+        /*position: absolute;*/
         right: 1rem;
         top: 1rem;
     }
@@ -441,6 +448,7 @@ footer {
         display: block;
         padding: 0.5rem 0;
     }
+
 
     .logo{
         margin-bottom: 0.5rem;
@@ -647,4 +655,21 @@ header a, footer {
   
   .cta-button:hover {
     transform: translateY(-2px);
+    background-color: orange;
+    border-radius: 25px;
+  }
+  .ev-content img{
+    width: 40vh;
+    height: 40vh ;
+    position: absolute;
+    left: 70%;
+    bottom: 35px;
+    border: double skyblue 2px ;
+    
+  }
+  #ev-cars{
+    position: relative;
+  }
+  #carbon-calculator button{
+    background-color: var(--primary-color);
   }

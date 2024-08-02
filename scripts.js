@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = modal.querySelector('.close');
     const factText = document.getElementById('random-fact');
     const tipElement = document.getElementById('tooltip-content');
-    const menuToggle = document.querySelector('.menu-toggle');
+    
+    const menuToggle = document.querySelector('menu-toggle');
     const navMenu = document.querySelector('nav ul');
 
     menuToggle.addEventListener('click', () => {
