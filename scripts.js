@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const factText = document.getElementById('random-fact');
     const tipElement = document.getElementById('tooltip-content');
     
-    const menuToggle = document.querySelector('menu-toggle');
+    const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('nav ul');
 
     menuToggle.addEventListener('click', () => {
@@ -97,6 +97,11 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
+        document.getElementById('check-matches').addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default button behavior
+            checkMatches();
+        });
+
         function checkMatches() {
             const matches = document.querySelectorAll('.matched');
             matches.forEach((match, index) => {
@@ -169,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
         quizGame.innerHTML = quizHTML;
     
         document.getElementById('next-question').addEventListener('click', function() {
+            e.preventDefault();
             const selected = document.querySelector(`input[name="q${index}"]:checked`);
             if (selected) {
                 currentQuestionIndex++;
@@ -436,6 +442,14 @@ document.addEventListener('DOMContentLoaded', function() {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
+
+    const startQuizButton = document.querySelector('#energy-quiz .cta-button');
+    if (startQuizButton) {
+        startQuizButton.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default button behavior
+            startQuiz();
+        });
+    }
 
     // Dynamic year in footer
     const currentYear = new Date().getFullYear();
